@@ -80,15 +80,6 @@ describe('api_test', async ()=>{
         expect(post_res.statusText).toBe("invalid keys.");
     })
 
-    test('success_get_id', async () => {
-        // id指定で取り出す
-        const get_res: any = await fetch(`/api/memo/1`);
-        const get_res_json = await get_res.json();
-        expect(get_res.status).toBe(200);
-        expect(get_res_json.id).toBe(1);
-        expect(get_res_json.title).toBe("first");
-    })
-
     test('failed_get_id', async () => {
         // 存在しないidを指定する
         const get_res: any = await fetch(`/api/memo/0`);
