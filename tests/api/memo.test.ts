@@ -95,4 +95,12 @@ describe('api_test', async ()=>{
         expect(get_res.status).toBe(204);
         expect(get_res.statusText).toBe("No Content");
     })
+
+    test('failed_delete_not_found', async () => {
+        // 書き込んだ情報を削除する
+        const del_res = await fetch(`/api/memo/0`, {
+            method: "DELETE",
+        });
+        expect(del_res.status).toBe(404);
+    })
 });
