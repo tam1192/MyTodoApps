@@ -1,0 +1,1 @@
+DELETE http://localhost:3000/api/memo/99 HTTP/1.1

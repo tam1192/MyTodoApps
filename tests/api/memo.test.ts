@@ -7,32 +7,59 @@ describe('api_test', async ()=>{
         host: 'http://localhost:3000',
     });
 
-    test('success_post_titleonly', async () => {
+    test('success_post_and_delete_titleonly', async () => {
+        // 情報を書き込み、idを取得する
         const post_res = await $fetch("/api/memo", {
             method: "POST",
             body: JSON.stringify({title: "test"}),
             headers: { "Content-Type": "application/json" }
         });
-        const get_res: any = await fetch(`/api/memo/${post_res.id}`);
+        const id = post_res.id;
+
+        // 書き込んだ情報を取得する
+        const get_res: any = await fetch(`/api/memo/${id}`);
         const get_res_json = await get_res.json();
         expect(get_res.status).toBe(200);
         expect(get_res_json.title).toBe("test");
+
+        // 書き込んだ情報を削除する
+        const del_res = await fetch(`/api/memo/${id}`, {
+            method: "DELETE",
+        });
+        expect(get_res.status).toBe(200);
+        const after_get_res: any = await fetch(`/api/memo/${id}`);
+        expect(after_get_res.status).toBe(204);
+        expect(after_get_res.statusText).toBe("No Content");
     });
 
-    test('success_post', async () => {
+    test('success_post_and_delete', async () => {
+        // 情報を書き込み、idを取得する
         const post_res = await $fetch("/api/memo", {
             method: "POST",
             body: JSON.stringify({title: "test", content: "hello"}),
             headers: { "Content-Type": "application/json" }
         });
-        const get_res: any = await fetch(`/api/memo/${post_res.id}`);
+        const id = post_res.id;
+
+        // 書き込んだ情報を取得する
+        const get_res: any = await fetch(`/api/memo/${id}`);
         const get_res_json = await get_res.json();
         expect(get_res.status).toBe(200);
         expect(get_res_json.title).toBe("test");
         expect(get_res_json.content).toBe("hello");
+
+        // 書き込んだ情報を削除する
+        const del_res = await fetch(`/api/memo/${id}`, {
+            method: "DELETE",
+        });
+        expect(get_res.status).toBe(200);
+        const after_get_res: any = await fetch(`/api/memo/${id}`);
+        expect(after_get_res.status).toBe(204);
+        expect(after_get_res.statusText).toBe("No Content");
     });
 
     test('failed_post_non_title', async () => {
+        // タイトルが存在しない書き込み
         const post_res = await fetch("/api/memo", {
             method: "POST",
             body: JSON.stringify({content: "hello"}),
@@ -43,6 +70,7 @@ describe('api_test', async ()=>{
     })
 
     test('failed_post_invalid_keys', async () => {
+        // 不正なキーが存在する書き込み
         const post_res = await fetch("/api/memo", {
             method: "POST",
             body: JSON.stringify({value: "0"}),
@@ -53,6 +81,7 @@ describe('api_test', async ()=>{
     })
 
     test('success_get_id', async () => {
+        // id指定で取り出す
         const get_res: any = await fetch(`/api/memo/1`);
         const get_res_json = await get_res.json();
         expect(get_res.status).toBe(200);
@@ -61,6 +90,7 @@ describe('api_test', async ()=>{
     })
 
     test('failed_get_id', async () => {
+        // 存在しないidを指定する
         const get_res: any = await fetch(`/api/memo/0`);
         expect(get_res.status).toBe(204);
         expect(get_res.statusText).toBe("No Content");
