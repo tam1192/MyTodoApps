@@ -1,5 +1,6 @@
 import { describe, it, expect, test } from "vitest";
 import { setup, fetch, $fetch } from '@nuxt/test-utils/e2e'
+import { ExitStatus } from "typescript";
 
 describe('api_test', async ()=>{
     await setup({
@@ -49,5 +50,19 @@ describe('api_test', async ()=>{
         });
         expect(post_res.status).toBe(400);
         expect(post_res.statusText).toBe("invalid keys.");
+    })
+
+    test('success_get_id', async () => {
+        const get_res: any = await fetch(`/api/memo/1`);
+        const get_res_json = await get_res.json();
+        expect(get_res.status).toBe(200);
+        expect(get_res_json.id).toBe(1);
+        expect(get_res_json.title).toBe("first");
+    })
+
+    test('failed_get_id', async () => {
+        const get_res: any = await fetch(`/api/memo/0`);
+        expect(get_res.status).toBe(204);
+        expect(get_res.statusText).toBe("No Content");
     })
 });
