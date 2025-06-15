@@ -12,7 +12,7 @@ describe('api_test', async ()=>{
             body: JSON.stringify({title: "test"}),
             headers: { "Content-Type": "application/json" }
         });
-        const get_res = (await $fetch(`/api/memo/${post_res.id}`))[0];
-        expect(get_res!.title).toBe("test");
+        const get_res: any = await $fetch(`/api/memo/${post_res.id}`);
+        expect(get_res.title).toBe("test");
     });
 });
