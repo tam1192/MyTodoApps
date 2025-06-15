@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
     })
 
     // 存在したら実行する
-    if (data !== undefined) {
+    if (data !== null) {
         return prisma.memo.delete({
             where: {
                 id: id,
@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) => {
         })
     } else {
         throw createError({
-            statusCode: 400,
+            statusCode: 404,
             statusMessage: "not found."
         });
     }
