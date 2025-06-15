@@ -13,7 +13,7 @@ datasource db {
 
 model Memo {
   id      Int      @id @default(autoincrement())
-  title   String
-  content String
+  title   String // タイトル
+  content String // 中身
   date    DateTime @default(now())
 }
