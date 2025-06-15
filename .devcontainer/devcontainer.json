@@ -18,11 +18,22 @@
 				"Nuxtr.nuxtr-vscode",
 				"Nuxtr.nuxt-vscode-extentions",
 				"Nuxt.mdc",
-				"Prisma.prisma"
+				"Prisma.prisma",
+				"bradlc.vscode-tailwindcss"
 			],
 			"settings": {
 				"editor.formatOnSave": true,
-				"editor.defaultFormatter": "Vue.volar"
+				"editor.defaultFormatter": "Vue.volar",
+				"files.associations": {
+					"*.css": "tailwindcss"
+				},
+				"editor.quickSuggestions": {
+					"strings": "on"
+				},
+				"tailwindCSS.classAttributes": ["class", "ui"],
+				"tailwindCSS.experimental.classRegex": [
+					["ui:\\s*{([^)]*)\\s*}", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+				]
 			}
 		}
 	}
