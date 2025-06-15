@@ -8,11 +8,25 @@ export default defineEventHandler(async (event) => {
     // (空白の場合も同然)
     const raw_id = parseInt(event.context.params!.id);
     const id = isNaN(raw_id) ? 0 : raw_id;
-    
-    // findUniqueで見つからない場合は、自動的にNoContentを返してくれる。
-    return prisma.memo.delete({
+
+    // 存在を確認する
+    const data = await prisma.memo.findUnique({
         where: {
             id: id,
         },
     })
+
+    // 存在したら実行する
+    if (data !== undefined) {
+        return prisma.memo.delete({
+            where: {
+                id: id,
+            },
+        })
+    } else {
+        throw createError({
+            statusCode: 400,
+            statusMessage: "not found."
+        });
+    }
 })
