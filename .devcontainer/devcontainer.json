@@ -19,7 +19,8 @@
 				"Nuxtr.nuxt-vscode-extentions",
 				"Nuxt.mdc",
 				"Prisma.prisma",
-				"bradlc.vscode-tailwindcss"
+				"bradlc.vscode-tailwindcss",
+				"humao.rest-client"
 			],
 			"settings": {
 				"editor.formatOnSave": true,

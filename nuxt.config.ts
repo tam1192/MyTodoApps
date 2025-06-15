@@ -10,6 +10,6 @@ export default defineNuxtConfig({
   // },
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', '@prisma/nuxt'],
+  modules: ['@nuxt/ui', '@prisma/nuxt', '@nuxt/test-utils'],
   css: ['assets/css/main.css']
 })
