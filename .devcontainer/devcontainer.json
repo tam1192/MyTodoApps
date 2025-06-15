@@ -17,7 +17,8 @@
 				"Vue.volar",
 				"Nuxtr.nuxtr-vscode",
 				"Nuxtr.nuxt-vscode-extentions",
-				"Nuxt.mdc"
+				"Nuxt.mdc",
+				"Prisma.prisma"
 			],
 			"settings": {
 				"editor.formatOnSave": true,
