@@ -1,8 +1,16 @@
 import prisma from "../../lib/prisma";
 
 export default defineEventHandler(async (event) => {
+    // UTF-8対策
     event.node.res.setHeader("Content-Type", "application/json; charset=utf-8");
 
+    // keyはtitleとcontentのみ許可する
+    // それ以外は許可しない
+    // valueはどちらもstring、stringは適当でええやろ
+
+    // titleは必須、contentは空を許す（その場合は空白文字列とする）
+
+    // 基本bodyがおかしい場合は400を返す
     const allowKeys = ["title", "content"]
 
     const body = await readBody(event);
