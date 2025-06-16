@@ -1,5 +1,5 @@
 import { defineVitestConfig } from '@nuxt/test-utils/config'
-import { coverageConfigDefaults } from 'vitest/config.js'
+import { coverageConfigDefaults } from 'vitest/dist/config.js'
 
 export default defineVitestConfig({
   test: {
