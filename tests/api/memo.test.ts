@@ -1,10 +1,11 @@
 import { describe, it, expect, test } from "vitest";
-import { setup, fetch, $fetch } from '@nuxt/test-utils/e2e'
-import { ExitStatus } from "typescript";
+import { setup, fetch, $fetch, startServer } from '@nuxt/test-utils/e2e'
 
 describe('api_test', async ()=>{
     await setup({
-        host: 'http://localhost:3000',
+        server: true,
+        browser: false,
+        runner: "vitest",
     });
 
     test('success_post_and_delete_titleonly', async () => {
