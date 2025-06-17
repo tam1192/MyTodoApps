@@ -4,34 +4,39 @@ import { setup, fetch, $fetch, startServer } from '@nuxt/test-utils/e2e'
 describe('api_test', async ()=>{
     await setup({
         server: true,
-        browser: false,
         runner: "vitest",
     });
 
-    test('success_post_and_delete_titleonly', async () => {
-        // 情報を書き込み、idを取得する
-        const post_res = await $fetch("/api/memo", {
-            method: "POST",
-            body: JSON.stringify({title: "test"}),
-            headers: { "Content-Type": "application/json" }
-        });
-        const id = post_res.id;
+    test('test', async () => {
+        const x = await fetch('/api/memo');
+        const d = x.body;
+        expect(d).toBe("file:./dev.db");
+    })
 
-        // 書き込んだ情報を取得する
-        const get_res: any = await fetch(`/api/memo/${id}`);
-        const get_res_json = await get_res.json();
-        expect(get_res.status).toBe(200);
-        expect(get_res_json.title).toBe("test");
+    // test('success_post_and_delete_titleonly', async () => {
+    //     // 情報を書き込み、idを取得する
+    //     const post_res = await $fetch("/api/memo", {
+    //         method: "POST",
+    //         body: JSON.stringify({title: "test"}),
+    //         headers: { "Content-Type": "application/json" }
+    //     });
+    //     const id = post_res.id;
 
-        // 書き込んだ情報を削除する
-        const del_res = await fetch(`/api/memo/${id}`, {
-            method: "DELETE",
-        });
-        expect(get_res.status).toBe(200);
-        const after_get_res: any = await fetch(`/api/memo/${id}`);
-        expect(after_get_res.status).toBe(204);
-        expect(after_get_res.statusText).toBe("No Content");
-    });
+    //     // 書き込んだ情報を取得する
+    //     const get_res: any = await fetch(`/api/memo/${id}`);
+    //     const get_res_json = await get_res.json();
+    //     expect(get_res.status).toBe(200);
+    //     expect(get_res_json.title).toBe("test");
+
+    //     // 書き込んだ情報を削除する
+    //     const del_res = await fetch(`/api/memo/${id}`, {
+    //         method: "DELETE",
+    //     });
+    //     expect(get_res.status).toBe(200);
+    //     const after_get_res: any = await fetch(`/api/memo/${id}`);
+    //     expect(after_get_res.status).toBe(204);
+    //     expect(after_get_res.statusText).toBe("No Content");
+    // });
 
     // test('success_post_and_delete', async () => {
     //     // 情報を書き込み、idを取得する

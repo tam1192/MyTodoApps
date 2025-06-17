@@ -5,5 +5,6 @@ export default defineEventHandler(async (event) => {
     event.node.res.setHeader("Content-Type", "application/json; charset=utf-8");
 
     // 全て返す
-    return await prisma.memo.findMany();
+    //return await prisma.memo.findMany();
+    return process.env.DATABASE_URL;
 });

@@ -4,12 +4,12 @@ import dotenv from 'dotenv';
 export default defineVitestConfig({
   test: {
     environment: "nuxt",
-    coverage: {
-      exclude: [
-        'nuxt.config.ts',
-      ],
-    },
-    env: dotenv.config({ path: ".env" }).parsed,
+    // coverage: {
+    //   exclude: [
+    //     'nuxt.config.ts',
+    //   ],
+    // },
+    env: dotenv.config({ path: ".env.test" }).parsed,
   },
 })
 
