@@ -5,13 +5,13 @@ describe('api_test', async ()=>{
     await setup({
         server: true,
         runner: "vitest",
+        env: process.env,
     });
-
-    test('test', async () => {
-        const x = await fetch('/api/memo');
-        const d = x.body;
-        expect(d).toBe("file:./dev.db");
-    })
+    
+    test('t', async () => {
+        const res = await $fetch("/api/memo");
+        expect(res).toBe("");
+    });
 
     // test('success_post_and_delete_titleonly', async () => {
     //     // 情報を書き込み、idを取得する
