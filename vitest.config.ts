@@ -1,4 +1,5 @@
 import { defineVitestConfig } from '@nuxt/test-utils/config'
+import dotenv from 'dotenv';
 
 export default defineVitestConfig({
   test: {
@@ -8,6 +9,7 @@ export default defineVitestConfig({
         'nuxt.config.ts',
       ],
     },
+    env: dotenv.config({ path: ".env" }).parsed,
   },
 })
 
