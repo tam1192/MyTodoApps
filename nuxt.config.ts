@@ -16,6 +16,14 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxt/ui', '@prisma/nuxt', '@nuxt/test-utils'],
   css: ['assets/css/main.css'],
+  // additional config
+  vite: {
+    resolve: {
+      alias: {
+        '.prisma/client/index-browser': './node_modules/.prisma/client/index-browser.js',
+      },
+    },
+  },
   $test: { 
     logLevel: "silent",
     runtimeConfig: {
